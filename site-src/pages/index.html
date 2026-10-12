@@ -1,0 +1,201 @@
+<section class="hero" aria-labelledby="titre">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Pour les auto-entrepreneurs</div>
+      <h1 id="titre">Facturez en 2 minutes. Sachez enfin <em>ce qui vous reste.</em></h1>
+      <p class="lead">Devis, factures conformes, URSSAF et vrai net en poche : Picaillon fait les calculs et les mentions légales à votre place, depuis votre téléphone.</p>
+      <div class="ctas">
+        <a class="btn btn-primary" href="app/">Essayer gratuitement {{icon:next}}</a>
+        <a class="btn" href="#liste">Être prévenu du lancement</a>
+      </div>
+      <ul class="reassure">
+        <li>{{icon:check}}Gratuit pendant le test</li>
+        <li>{{icon:check}}Sans inscription</li>
+        <li>{{icon:check}}Vos données restent sur votre téléphone</li>
+      </ul>
+    </div>
+    <div class="hero-visual">
+      <div class="phone"><img src="assets/img/ecran-accueil.webp" width="390" height="844" alt="Écran d'accueil de Picaillon : net en poche de l'année, part URSSAF, prochaine déclaration et factures à encaisser" fetchpriority="high"></div>
+      <div class="floating f1" aria-hidden="true"><span class="dot"></span>Facture payée<b class="num">+ 1 055 €</b></div>
+      <div class="floating f2" aria-hidden="true">À mettre de côté<b class="num">21,5 %</b></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="t-quotidien">
+  <div class="wrap">
+    <div class="sec-h">
+      <div class="eyebrow">Au quotidien</div>
+      <h2 id="t-quotidien">Les questions que vous vous posez, Picaillon y répond.</h2>
+    </div>
+    <ul class="pains">
+      <li><span class="ic">{{icon:doc}}</span><div><div class="q">« Qu'est-ce que je dois mettre sur ma facture ? »</div><div class="a">Les mentions obligatoires s'ajoutent toutes seules : SIRET, « TVA non applicable, art. 293 B du CGI », pénalités de retard, assurance décennale…</div></div></li>
+      <li><span class="ic">{{icon:bank}}</span><div><div class="q">« Combien je déclare à l'URSSAF ce mois-ci ? »</div><div class="a">Picaillon additionne ce que vous avez encaissé sur la période et vous rappelle la date limite.</div></div></li>
+      <li><span class="ic">{{icon:euro}}</span><div><div class="q">« Sur 2 000 €, il me reste combien ? »</div><div class="a">Cotisations, formation, impôt et vos frais fixes déduits : vous voyez votre vrai revenu.</div></div></li>
+      <li><span class="ic">{{icon:bell}}</span><div><div class="q">« Ce client ne m'a toujours pas payé. »</div><div class="a">Les factures en retard ressortent, et la relance est prête : rappel cordial, relance ferme ou mise en demeure.</div></div></li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec" id="fonctions" aria-labelledby="t-fonctions" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-h">
+      <div class="eyebrow">Fonctionnalités</div>
+      <h2 id="t-fonctions">Tout ce qu'il faut, rien de plus.</h2>
+      <p>Pensé pour les artisans, les freelances et tous ceux qui facturent entre deux rendez-vous.</p>
+    </div>
+    <div class="features">
+      <div class="feat"><div class="ic">{{icon:pen}}</div><h3>Devis signés sur place</h3><p>Le client signe sur votre téléphone. Le devis accepté devient facture en un geste.</p></div>
+      <div class="feat"><div class="ic">{{icon:doc}}</div><h3>Factures conformes</h3><p>Numérotation continue, mentions légales, factures d'acompte et avoirs. PDF propre, prêt à envoyer.</p></div>
+      <div class="feat"><div class="ic">{{icon:qr}}</div><h3>Payé plus vite</h3><p>Un QR code de virement sur chaque facture : le client le scanne, IBAN et montant se remplissent tout seuls.</p></div>
+      <div class="feat wide"><div class="ic">{{icon:euro}}</div><h3>Votre vrai net en poche</h3><p>Cotisations, formation professionnelle, impôt libératoire et vos frais (assurance, mutuelle, véhicule…) : tout est déduit.</p></div>
+      <div class="feat"><div class="ic">{{icon:bank}}</div><h3>URSSAF sans stress</h3><p>Périodes mensuelles ou trimestrielles, montants à déclarer, ACRE, plafonds et seuils de TVA surveillés.</p></div>
+      <div class="feat"><div class="ic">{{icon:send}}</div><h3>Envoi par WhatsApp, SMS ou e-mail</h3><p>Le message est rédigé, le PDF part depuis votre téléphone avec l'appli de votre choix.</p></div>
+      <div class="feat"><div class="ic">{{icon:check}}</div><h3>Paiements retrouvés</h3><p>Importez le relevé de votre banque : les factures réglées se cochent toutes seules.</p></div>
+      <div class="feat"><div class="ic">{{icon:book}}</div><h3>Livre des recettes</h3><p>Le registre obligatoire se remplit seul à chaque paiement, et s'exporte pour votre comptable.</p></div>
+      <div class="feat"><div class="ic">{{icon:spark}}</div><h3>Prêt pour 2027</h3><p>Chaque facture contient déjà les données Factur-X attendues par la facture électronique.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec calc-sec" id="calcul" aria-labelledby="t-calc">
+  <div class="wrap">
+    <div class="sec-h">
+      <div class="eyebrow">Combien il me reste ?</div>
+      <h2 id="t-calc">Si votre client vous verse 2 000 €, combien est vraiment à vous ?</h2>
+      <p>Avec les taux URSSAF {{annee}} de votre activité. Dans l'appli, vos frais fixes et l'ACRE sont aussi pris en compte.</p>
+    </div>
+    <div class="calc" id="calc" data-rates='{{rates}}'>
+      <div class="calc-in">
+        <label for="c-amount">Montant encaissé
+          <span class="amount"><input id="c-amount" inputmode="decimal" value="2000" autocomplete="off" aria-describedby="c-net-l"><span>€</span></span>
+        </label>
+        <label for="c-act">Votre activité
+          <select id="c-act">{{activites}}</select>
+        </label>
+        <label class="chk"><input type="checkbox" id="c-vl"> J'ai choisi le versement libératoire de l'impôt</label>
+      </div>
+      <div class="calc-out" aria-live="polite">
+        <div class="big" id="c-net">—</div>
+        <p class="big-l" id="c-net-l"></p>
+        <div class="bar" aria-hidden="true"><i id="b-net" class="c-net"></i><i id="b-soc" class="c-soc"></i><i id="b-cfp" class="c-cfp"></i><i id="b-vl" class="c-vl"></i></div>
+        <dl>
+          <dt><span class="sw c-soc"></span><span id="c-soc-l">Cotisations URSSAF</span></dt><dd id="c-soc">—</dd>
+          <dt><span class="sw c-cfp"></span><span id="c-cfp-l">Formation professionnelle</span></dt><dd id="c-cfp">—</dd>
+          <dt><span class="sw c-vl"></span><span id="c-imp-l">Impôt</span></dt><dd id="c-imp">—</dd>
+        </dl>
+        <p class="fine">Calcul indicatif, hors ACRE et hors frais. Sans versement libératoire, votre impôt sur le revenu dépend de votre foyer fiscal.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="ecrans" aria-labelledby="t-ecrans">
+  <div class="wrap">
+    <div class="sec-h">
+      <div class="eyebrow">Aperçu</div>
+      <h2 id="t-ecrans">Une appli claire, même entre deux chantiers.</h2>
+    </div>
+    <div class="screens">
+      <figure><div class="phone sm"><img src="assets/img/ecran-accueil.webp" width="390" height="844" loading="lazy" alt="Accueil : net en poche, part URSSAF et frais"></div><figcaption><b>Votre année d'un coup d'œil</b><span>Net en poche, à déclarer, à encaisser.</span></figcaption></figure>
+      <figure><div class="phone sm"><img src="assets/img/ecran-facture.webp" width="390" height="844" loading="lazy" alt="Une facture avec ses mentions légales et le QR code de virement"></div><figcaption><b>Des factures impeccables</b><span>Mentions légales et QR code de virement.</span></figcaption></figure>
+      <figure><div class="phone sm"><img src="assets/img/ecran-urssaf.webp" width="390" height="844" loading="lazy" alt="Les périodes URSSAF avec le montant à déclarer et la date limite"></div><figcaption><b>L'URSSAF sous contrôle</b><span>Chaque période, le montant et l'échéance.</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="t-donnees" style="padding-top:0">
+  <div class="wrap">
+    <div class="privacy">
+      <div class="ic">{{icon:lock}}</div>
+      <div>
+        <h2 id="t-donnees">Vos chiffres restent chez vous.</h2>
+        <p>Pendant la phase de test, Picaillon fonctionne entièrement sur votre téléphone : vos clients, devis et factures ne sont envoyés sur aucun serveur. Personne d'autre n'y a accès, pas même nous.</p>
+      </div>
+      <ul>
+        <li>{{icon:check}}Aucun compte à créer</li>
+        <li>{{icon:check}}Aucune publicité, aucun traceur</li>
+        <li>{{icon:check}}Sauvegarde en un geste, dans vos fichiers</li>
+        <li>{{icon:check}}Fonctionne sans réseau, sur le chantier</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="tarifs" aria-labelledby="t-tarifs" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-h">
+      <div class="eyebrow">Tarifs</div>
+      <h2 id="t-tarifs">Gratuit pour l'essentiel.</h2>
+      <p>Pendant le test, tout est gratuit, sans carte bancaire.</p>
+    </div>
+    <div class="plans">
+      <div class="plan">
+        <div class="eyebrow">Gratuit</div>
+        <div class="price">0 € <small>pour toujours</small></div>
+        <ul>
+          <li>{{icon:check}}Devis, factures et avoirs illimités</li>
+          <li>{{icon:check}}Mentions légales automatiques</li>
+          <li>{{icon:check}}QR code de virement sur les factures</li>
+          <li>{{icon:check}}Calcul URSSAF, plafonds et livre des recettes</li>
+          <li>{{icon:check}}Signature des devis sur place</li>
+          <li>{{icon:check}}Rapprochement avec votre relevé bancaire</li>
+        </ul>
+        <span class="tag">Disponible maintenant</span>
+      </div>
+      <div class="plan pro">
+        <div class="eyebrow">Picaillon Pro · bientôt</div>
+        <div class="price">7,90 € <small>par mois, prix prévu</small></div>
+        <ul>
+          <li>{{icon:check}}Envoi direct par e-mail, PDF joint, et relances automatiques</li>
+          <li>{{icon:check}}Paiements reconnus tout seuls grâce à la synchro bancaire</li>
+          <li>{{icon:check}}Devis rédigés par l'IA à partir de quelques mots</li>
+          <li>{{icon:check}}Sauvegarde en ligne et accès depuis tous vos appareils</li>
+          <li>{{icon:check}}Facture électronique 2027 via une plateforme agréée</li>
+        </ul>
+        <p class="note">En préparation. Les inscrits à la liste seront prévenus en premier.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="faq" aria-labelledby="t-faq" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-h">
+      <div class="eyebrow">Questions fréquentes</div>
+      <h2 id="t-faq">Vous vous demandez peut-être…</h2>
+    </div>
+    <div class="faq">
+      <details><summary>Picaillon est vraiment gratuit ?</summary><p>Oui. Pendant la phase de test, tout est gratuit, sans carte bancaire. Les fonctions de base resteront gratuites. Une formule Pro payante arrivera ensuite pour ceux qui veulent l'envoi automatique, la synchro bancaire et la sauvegarde en ligne.</p></details>
+      <details><summary>Mes factures sont-elles conformes ?</summary><p>Picaillon ajoute les mentions obligatoires d'une facture de micro-entrepreneur : votre identité et votre SIRET, un numéro unique et continu, la date, le détail des prestations, la mention d'exonération de TVA, les conditions de paiement, les pénalités de retard et, entre professionnels, l'indemnité forfaitaire de 40 €. Vérifiez vos informations dans les réglages : vous restez responsable de vos factures.</p></details>
+      <details><summary>Picaillon déclare-t-il à ma place à l'URSSAF ?</summary><p>Pas encore. Picaillon calcule le chiffre d'affaires à déclarer pour chaque période et vous rappelle l'échéance. Vous le reportez sur autoentrepreneur.urssaf.fr en deux minutes. Les montants sont indicatifs : en cas de doute, l'URSSAF fait foi.</p></details>
+      <details><summary>Et la facture électronique obligatoire ?</summary><p>Les micro-entrepreneurs doivent pouvoir recevoir des factures électroniques depuis le 1er septembre 2026, et devront en émettre à partir du 1er septembre 2027, via une plateforme agréée. Les factures Picaillon contiennent déjà les données Factur-X. Le raccordement à une plateforme agréée est prévu dans Picaillon Pro.</p></details>
+      <details><summary>Où sont stockées mes données ?</summary><p>Uniquement sur votre appareil, dans le navigateur ou l'appli installée. Exportez une sauvegarde de temps en temps (Réglages, puis Vos données) : si vous changez de téléphone, vous la réimportez en un geste.</p></details>
+      <details><summary>Ça marche sur iPhone et Android ?</summary><p>Oui, et sur ordinateur. Sur téléphone, installez Picaillon sur l'écran d'accueil : elle s'ouvre comme une appli et marche sans réseau. Les versions App Store et Google Play arriveront ensuite.</p></details>
+      <details><summary>Picaillon remplace-t-il un expert-comptable ?</summary><p>Non. Picaillon vous évite les erreurs du quotidien et vous fait gagner du temps. Pour une question sur votre situation (changement de statut, dépassement de seuil, TVA), demandez à un expert-comptable ou à l'URSSAF.</p></details>
+      <details><summary>Qui est derrière Picaillon ?</summary><p>Picaillon est un projet indépendant, créé par {{editeur}}. Le test sert à le construire avec ceux qui l'utilisent : chaque avis est lu.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="liste" aria-labelledby="t-liste" style="padding-top:0">
+  <div class="wrap">
+    <div class="join">
+      <div>
+        <h2 id="t-liste">Soyez prévenu en premier.</h2>
+        <p>Picaillon Pro arrive : envoi automatique, synchro bancaire, sauvegarde en ligne. Laissez votre e-mail, on vous écrit au lancement. Pas de spam, désinscription sur simple demande.</p>
+      </div>
+      <form class="form" name="liste-attente" method="POST" action="/merci.html" data-netlify="true" netlify-honeypot="site-web">
+        <input type="hidden" name="form-name" value="liste-attente">
+        <p class="hp"><label>Ne pas remplir <input name="site-web" tabindex="-1" autocomplete="off"></label></p>
+        <label class="field"><span>Votre e-mail</span><input class="input" type="email" name="email" required autocomplete="email" placeholder="vous@exemple.fr"></label>
+        <label class="field"><span>Votre activité</span>
+          <select class="input" name="Activité">{{metiers}}</select>
+        </label>
+        <label class="consent"><input type="checkbox" name="Accepte les e-mails" value="Oui" required><span>J'accepte de recevoir des e-mails sur le lancement de Picaillon. Je peux me désinscrire à tout moment. <a href="confidentialite.html">Confidentialité</a></span></label>
+        <p class="form-msg" hidden></p>
+        <button class="btn btn-primary" type="submit">Je m'inscris</button>
+      </form>
+    </div>
+  </div>
+</section>

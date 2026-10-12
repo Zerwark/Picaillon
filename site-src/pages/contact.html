@@ -1,0 +1,26 @@
+<section class="page" aria-labelledby="titre">
+  <div class="wrap">
+    <div class="eyebrow">Contact</div>
+    <h1 id="titre">Écrire à Picaillon</h1>
+    <p class="intro">Une question, un problème, une demande sur vos données personnelles : réponse sous quelques jours.</p>
+    <form class="form card" name="contact" method="POST" action="/merci.html" data-netlify="true" netlify-honeypot="site-web">
+      <input type="hidden" name="form-name" value="contact">
+      <p class="hp"><label>Ne pas remplir <input name="site-web" tabindex="-1" autocomplete="off"></label></p>
+      <label class="field"><span>Votre nom (facultatif)</span><input class="input" name="Nom" autocomplete="name"></label>
+      <label class="field"><span>Votre e-mail</span><input class="input" type="email" name="email" required autocomplete="email" placeholder="Pour vous répondre"></label>
+      <label class="field"><span>Objet</span>
+        <select class="input" name="Objet">
+          <option>Question sur Picaillon</option>
+          <option>Signaler un problème</option>
+          <option>Mes données personnelles</option>
+          <option>Autre</option>
+        </select>
+      </label>
+      <label class="field"><span>Votre message</span><textarea class="input" name="Message" rows="6" required></textarea></label>
+      <p class="fine-print">Votre message et votre e-mail servent uniquement à vous répondre. <a href="confidentialite.html">Confidentialité</a></p>
+      <p class="form-msg" hidden></p>
+      <button class="btn btn-primary" type="submit">Envoyer</button>
+    </form>
+    {{contact_email}}
+  </div>
+</section>

@@ -1,0 +1,17 @@
+# Fichiers construits
+dist/
+pecule.html
+__pycache__/
+*.pyc
+.DS_Store
+# Vidéo : médias et fichiers intermédiaires
+marketing/video/caps/
+marketing/video/out/
+marketing/video/voice/
+marketing/video/test/
+marketing/video/speko/
+marketing/video/elevenlabs/
+marketing/video/data.js
+*.wav
+*.mp3
+*.mp4

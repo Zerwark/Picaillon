@@ -1,0 +1,53 @@
+<section class="page" aria-labelledby="titre">
+  <div class="wrap">
+    <div class="eyebrow">Version de test</div>
+    <h1 id="titre">Votre avis sur Picaillon</h1>
+    <p class="intro">Deux minutes pour nous dire ce qui marche, ce qui bloque et ce qui manque. Chaque réponse est lue, et décide de la suite.</p>
+    <form class="form card" name="avis" method="POST" action="/merci.html" data-netlify="true" netlify-honeypot="site-web">
+      <input type="hidden" name="form-name" value="avis">
+      <p class="hp"><label>Ne pas remplir <input name="site-web" tabindex="-1" autocomplete="off"></label></p>
+      <label class="field"><span>Votre activité</span>
+        <select class="input" name="Activité">{{metiers}}</select>
+      </label>
+      <fieldset class="field"><legend>Qu'avez-vous essayé ?</legend>
+        <div class="opts">
+          <label><input type="checkbox" name="A essayé" value="Devis"> Devis</label>
+          <label><input type="checkbox" name="A essayé" value="Facture"> Facture</label>
+          <label><input type="checkbox" name="A essayé" value="Envoi au client"> Envoi au client</label>
+          <label><input type="checkbox" name="A essayé" value="Signature sur place"> Signature sur place</label>
+          <label><input type="checkbox" name="A essayé" value="URSSAF"> URSSAF</label>
+          <label><input type="checkbox" name="A essayé" value="Combien il me reste"> Combien il me reste</label>
+          <label><input type="checkbox" name="A essayé" value="Relevé bancaire"> Relevé bancaire</label>
+          <label><input type="checkbox" name="A essayé" value="Installation sur le téléphone"> Installation sur le téléphone</label>
+        </div>
+      </fieldset>
+      <label class="field"><span>Qu'est-ce qui vous a plu ?</span><textarea class="input" name="Ce qui a plu" rows="3"></textarea></label>
+      <label class="field"><span>Qu'est-ce qui vous a bloqué, gêné ou manqué ?</span><textarea class="input" name="Ce qui a bloqué ou manqué" rows="4"></textarea><small>Un bug ? Dites ce que vous faisiez et sur quel téléphone.</small></label>
+      <fieldset class="field"><legend>Recommanderiez-vous Picaillon à un collègue ?</legend>
+        <div class="scale">{{scale}}</div>
+        <div class="scale-legend"><span>0 · pas du tout</span><span>10 · certainement</span></div>
+      </fieldset>
+      <fieldset class="field"><legend>Paieriez-vous 7,90 € par mois pour Picaillon Pro ?</legend>
+        <div class="opts">
+          <label><input type="radio" name="Paierait Picaillon Pro" value="Oui"> Oui</label>
+          <label><input type="radio" name="Paierait Picaillon Pro" value="Peut-être"> Peut-être</label>
+          <label><input type="radio" name="Paierait Picaillon Pro" value="Non"> Non</label>
+        </div>
+      </fieldset>
+      <fieldset class="field"><legend>Aujourd'hui, vous faites vos factures avec…</legend>
+        <div class="opts">
+          <label><input type="radio" name="Factures faites avec" value="Word ou Excel"> Word ou Excel</label>
+          <label><input type="radio" name="Factures faites avec" value="Une autre appli"> Une autre appli</label>
+          <label><input type="radio" name="Factures faites avec" value="Mon comptable"> Mon comptable</label>
+          <label><input type="radio" name="Factures faites avec" value="Un carnet papier"> Un carnet papier</label>
+          <label><input type="radio" name="Factures faites avec" value="Je débute"> Je débute</label>
+        </div>
+      </fieldset>
+      <label class="field"><span>Quelle autre appli, le cas échéant ?</span><input class="input" name="Autre appli utilisée" placeholder="Indy, Abby, Freebe, Tiime…"></label>
+      <label class="field"><span>Votre e-mail (facultatif)</span><input class="input" type="email" name="email" autocomplete="email" placeholder="Pour qu'on puisse vous répondre"></label>
+      <p class="fine-print">Vos réponses servent uniquement à améliorer Picaillon. <a href="confidentialite.html">Confidentialité</a></p>
+      <p class="form-msg" hidden></p>
+      <button class="btn btn-primary" type="submit">Envoyer mon avis</button>
+    </form>
+  </div>
+</section>

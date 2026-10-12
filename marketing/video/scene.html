@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8">
+<style>
+:root { --paper:#F1F3F8; --ink:#141829; --muted:#5A6175; --accent:#2340D8; --accent2:#8197FF; --soft:#E6EAFD; --night:#0E1224; --ok:#12765A; --okb:#3FC495; --warm:#FFB86B; }
+* { box-sizing:border-box; margin:0; padding:0; }
+html, body { width:1080px; height:1920px; overflow:hidden; background:#000; }
+body { font-family:'Inter', sans-serif; -webkit-font-smoothing:antialiased; }
+#stage { position:absolute; inset:0; width:1080px; height:1920px; overflow:hidden; background:var(--paper); }
+.abs { position:absolute; }
+.scene { position:absolute; inset:0; opacity:0; }
+.disp { font-family:'Inter Display','Inter',sans-serif; font-weight:700; letter-spacing:-0.02em; }
+#glow { position:absolute; width:1400px; height:1400px; border-radius:50%; left:-160px; top:200px; background:radial-gradient(closest-side, rgba(35,64,216,.18), rgba(35,64,216,0)); }
+#lamp { position:absolute; width:1500px; height:1500px; border-radius:50%; left:-600px; top:-500px; background:radial-gradient(closest-side, rgba(255,184,107,.20), rgba(255,184,107,0)); opacity:0; }
+
+/* A — Camille */
+#roller { position:absolute; left:0; top:0; width:1080px; height:1920px; }
+#stripe { position:absolute; left:-40px; top:690px; height:250px; width:0; background:var(--accent); border-radius:18px; }
+#camCard { position:absolute; left:110px; top:640px; width:860px; }
+#camName { font-size:150px; color:#fff; line-height:1; padding:62px 70px 0; white-space:nowrap; }
+#camRole { margin-top:120px; font-size:48px; color:var(--ink); font-weight:600; display:flex; align-items:center; gap:22px; padding-left:8px; }
+#camRole .pin { width:62px; height:62px; border-radius:50%; background:var(--soft); display:grid; place-items:center; color:var(--accent); }
+#avatar { position:absolute; left:370px; top:330px; width:340px; height:340px; border-radius:50%; background:#fff; box-shadow:0 30px 80px -30px rgba(20,24,41,.35); display:grid; place-items:center; }
+#avatar .in { width:300px; height:300px; border-radius:50%; background:linear-gradient(160deg,#E6EAFD,#C9D2FB); display:grid; place-items:center; }
+
+/* B — le soir */
+#clock { position:absolute; left:0; right:0; top:260px; text-align:center; color:#fff; font-size:150px; font-variant-numeric:tabular-nums; }
+#clockLbl { position:absolute; left:0; right:0; top:450px; text-align:center; color:rgba(255,255,255,.55); font-size:40px; font-weight:500; }
+.paper { position:absolute; width:520px; height:680px; background:#fff; border-radius:14px; box-shadow:0 40px 90px -30px rgba(0,0,0,.6); padding:56px 50px; }
+.paper i { display:block; height:16px; border-radius:8px; background:#D9DEE8; margin-bottom:26px; }
+.paper .scrib { position:absolute; left:0; top:0; }
+#bigQ { position:absolute; left:60px; right:60px; top:1180px; text-align:center; color:#fff; font-size:96px; line-height:1.05; }
+#bigQ em { font-style:normal; color:var(--warm); }
+#euroQ { position:absolute; left:0; right:0; top:520px; text-align:center; color:var(--warm); font-size:190px; font-variant-numeric:tabular-nums; opacity:0; }
+
+/* C — logo */
+#logoWrap { position:absolute; left:0; right:0; top:760px; height:300px; }
+#logoIcon { position:absolute; left:130px; top:0; width:250px; height:250px; }
+#logoWord { position:absolute; left:420px; top:38px; height:190px; width:600px; overflow:visible; color:var(--ink); }
+#tagline { position:absolute; left:0; right:0; top:1110px; text-align:center; font-size:52px; color:var(--muted); font-weight:500; }
+#tagline b { color:var(--accent); font-weight:700; }
+
+/* Téléphone */
+#phone { position:absolute; left:226px; top:420px; width:628px; height:1326px; border-radius:76px; background:#0B0F1E; padding:14px; box-shadow:0 60px 120px -40px rgba(20,24,41,.55), 0 0 0 2px rgba(255,255,255,.06) inset; }
+#screen { position:relative; width:600px; height:1298px; border-radius:62px; overflow:hidden; background:var(--paper); }
+#vp { position:absolute; left:0; top:0; width:390px; height:844px; transform-origin:0 0; }
+.layer { position:absolute; inset:0; opacity:0; overflow:hidden; }
+.layer .doc { position:absolute; left:0; top:0; width:390px; }
+.layer .topcrop { position:absolute; left:0; top:0; width:390px; overflow:hidden; opacity:0; }
+.layer .topcrop img { width:390px; display:block; }
+.layer .tabbar { position:absolute; left:0; bottom:0; width:390px; height:64px; }
+.ring { position:absolute; border:3px solid var(--accent); border-radius:18px; box-shadow:0 0 0 6px rgba(35,64,216,.18); opacity:0; }
+#scan { position:absolute; height:3px; background:linear-gradient(90deg, rgba(35,64,216,0), #2340D8, rgba(35,64,216,0)); box-shadow:0 0 12px 3px rgba(35,64,216,.55); opacity:0; }
+#notif { position:absolute; left:18px; right:18px; top:-120px; background:rgba(255,255,255,.97); border-radius:20px; box-shadow:0 18px 40px -16px rgba(20,24,41,.45); padding:13px 16px; display:flex; gap:12px; align-items:center; }
+#notif .ic { width:40px; height:40px; border-radius:11px; background:var(--ok); color:#fff; display:grid; place-items:center; flex:none; }
+#notif b { display:block; font-size:15px; color:var(--ink); }
+#notif span { font-size:13px; color:var(--muted); }
+#notif .amt { margin-left:auto; font-weight:800; color:var(--ok); font-size:17px; font-variant-numeric:tabular-nums; }
+
+/* Titres du haut */
+.head { position:absolute; left:70px; right:70px; top:150px; text-align:center; font-size:76px; line-height:1.04; color:var(--ink); opacity:0; }
+.head em { font-style:normal; color:var(--accent); }
+.head.dark { color:#fff; } .head.dark em { color:var(--accent2); }
+.chip { position:absolute; background:#fff; border-radius:999px; padding:16px 26px 16px 18px; font-size:34px; font-weight:600; color:var(--ink); display:flex; align-items:center; gap:14px; box-shadow:0 20px 50px -20px rgba(20,24,41,.35); white-space:nowrap; opacity:0; }
+.chip .ck { width:46px; height:46px; border-radius:50%; background:var(--ok); color:#fff; display:grid; place-items:center; flex:none; }
+.coin { position:absolute; width:54px; height:54px; border-radius:50%; background:var(--accent); opacity:0; }
+.coin::after { content:''; position:absolute; inset:12px; border-radius:50%; border:6px solid #fff; }
+#mentions { position:absolute; left:70px; right:70px; top:1080px; background:#fff; border-radius:30px; padding:26px 34px 30px; box-shadow:0 30px 70px -30px rgba(20,24,41,.45); opacity:0; }
+#mentions .mt { font-size:28px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin-bottom:16px; }
+#mentions .mg { display:grid; grid-template-columns:1fr 1fr; gap:16px 22px; }
+#mentions .mi { display:flex; align-items:center; gap:14px; font-size:36px; font-weight:650; color:var(--ink); opacity:0; white-space:nowrap; }
+#mentions .ck { width:44px; height:44px; border-radius:50%; background:var(--ok); color:#fff; display:grid; place-items:center; flex:none; }
+#bigNum { position:absolute; left:0; right:0; top:255px; text-align:center; color:#fff; font-size:150px; font-variant-numeric:tabular-nums; opacity:0; }
+
+/* H — vie privée */
+#lock { position:absolute; left:390px; top:330px; width:300px; height:360px; }
+.privLine { position:absolute; left:150px; right:110px; font-size:58px; color:var(--ink); font-weight:600; display:flex; align-items:center; gap:28px; opacity:0; }
+.privLine .ck { width:78px; height:78px; border-radius:50%; background:var(--ok); color:#fff; display:grid; place-items:center; flex:none; }
+#privTitle { position:absolute; left:60px; right:60px; top:790px; text-align:center; font-size:84px; color:var(--ink); line-height:1.05; opacity:0; }
+
+/* I — appel à l'action */
+#ctaHead { position:absolute; left:60px; right:60px; top:230px; text-align:center; color:#fff; font-size:84px; line-height:1.05; opacity:0; }
+#ctaLogo { position:absolute; left:0; right:0; top:560px; height:260px; }
+#ctaFree { position:absolute; left:50%; top:880px; transform:translateX(-50%); background:#fff; color:var(--accent); border-radius:999px; padding:22px 48px; font-size:62px; font-weight:800; white-space:nowrap; opacity:0; }
+#ctaUrl { position:absolute; left:110px; right:110px; top:1060px; text-align:center; background:rgba(255,255,255,.14); border:2px solid rgba(255,255,255,.35); color:#fff; border-radius:28px; padding:28px 20px; font-size:50px; font-weight:700; opacity:0; }
+#ctaArrow { position:absolute; left:0; right:0; top:1220px; text-align:center; color:#fff; font-size:44px; font-weight:600; opacity:0; }
+#ctaArrow svg { display:block; margin:16px auto 0; }
+
+/* Sous-titres */
+#cap { position:absolute; left:60px; right:60px; top:1395px; display:flex; justify-content:center; opacity:0; }
+#capBox { background:rgba(14,18,36,.86); border-radius:30px; padding:22px 34px; max-width:960px; text-align:center; font-size:48px; line-height:1.22; font-weight:650; color:rgba(255,255,255,.42); box-shadow:0 24px 60px -24px rgba(0,0,0,.5); }
+#capBox .w { transition:none; }
+#capBox .on { color:#fff; }
+#capBox .cur { color:#A9B8FF; }
+</style></head>
+<body>
+<div id="stage">
+  <div id="glow"></div><div id="lamp"></div>
+
+  <!-- A : Camille -->
+  <div class="scene" id="A">
+    <div id="avatar"><div class="in">
+      <svg width="190" height="190" viewBox="0 0 64 64" fill="none" stroke="#2340D8" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="8" width="38" height="14" rx="5" fill="#fff"/><path d="M48 15h5v12H31v8"/><rect x="27" y="35" width="8" height="21" rx="3" fill="#2340D8"/></svg>
+    </div></div>
+    <div id="stripe"></div>
+    <div id="camCard"><div id="camName" class="disp">Camille</div>
+      <div id="camRole"><span class="pin"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span>Peintre en bâtiment · Lyon</div></div>
+  </div>
+
+  <!-- B : le soir -->
+  <div class="scene" id="B">
+    <div id="clock" class="disp">21:47</div><div id="clockLbl">Après les chantiers, les factures…</div>
+    <div class="paper" id="p1" style="left:120px;top:600px"><i style="width:60%"></i><i></i><i style="width:80%"></i><i style="width:70%"></i><i></i><i style="width:40%"></i></div>
+    <div class="paper" id="p2" style="left:330px;top:640px"><i style="width:50%"></i><i></i><i style="width:75%"></i><i></i><i style="width:65%"></i></div>
+    <div class="paper" id="p3" style="left:220px;top:680px"><i style="width:55%"></i><i></i><i style="width:85%"></i><i style="width:60%"></i>
+      <svg class="scrib" width="520" height="680" viewBox="0 0 520 680"><path id="scribPath" d="M70 420 C 150 380, 200 470, 260 420 S 360 380, 420 440 M 120 520 L 400 500 M 300 300 q 40 -60 80 0 q -20 40 -40 60 v 30" fill="none" stroke="#D2443A" stroke-width="9" stroke-linecap="round"/></svg>
+    </div>
+    <div id="euroQ" class="disp">? ??? €</div>
+    <div id="bigQ" class="disp">Combien il me reste…<br><em>vraiment&nbsp;?</em></div>
+  </div>
+
+  <!-- C : logo -->
+  <div class="scene" id="C">
+    <div id="logoWrap">
+      <svg id="logoIcon" viewBox="0 0 64 64"><rect width="64" height="64" rx="15" fill="#2340D8"/><rect x="16" y="13" width="10.5" height="38" rx="5.25" fill="#fff"/><circle cx="35" cy="27" r="14" fill="#fff"/><circle cx="35" cy="27" r="8.4" fill="none" stroke="#2340D8" stroke-width="3.2"/></svg>
+      <div id="logoWord"></div>
+    </div>
+    <div id="tagline">Devis · Factures · <b>URSSAF</b></div>
+  </div>
+
+  <!-- Téléphone (D à G) -->
+  <div id="phone"><div id="screen"><div id="vp">
+    <div class="layer" id="Lsign"><img class="doc" src="caps/signature-vide.png"><svg id="sig" class="abs" style="left:0;top:0" width="390" height="844" viewBox="0 0 390 844"></svg></div>
+    <div class="layer" id="Ldevis"><img class="doc" src="caps/devis-accepte.png"><div class="topcrop" style="height:74px"><img src="caps/devis-accepte.png"></div><img class="tabbar" src="caps/devis-accepte-tabbar.png"></div>
+    <div class="layer" id="Lfact"><div class="docwrap abs" style="left:0;top:0;width:390px;transform-origin:0 0"><img class="doc" src="caps/facture.png"><div id="scan"></div><div class="ring" id="ringQr"></div></div><div class="topcrop" style="height:74px"><img src="caps/facture.png"></div><img class="tabbar" src="caps/facture-tabbar.png">
+      <div id="notif"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><div><b>Facture payée</b><span>Hélène Morel · F-2026-016</span></div><div class="amt">+ 1 334 €</div></div>
+    </div>
+    <div class="layer" id="Lhome"><div class="docwrap abs" style="left:0;top:0;width:390px"><img class="doc" src="caps/accueil.png"><div class="ring" id="ringHero"></div><div class="ring" id="ringUrssaf"></div></div><div class="topcrop" style="height:74px"><img src="caps/accueil.png"></div><img class="tabbar" src="caps/accueil-tabbar.png"></div>
+  </div></div></div>
+
+  <!-- Titres -->
+  <div class="head disp" id="hD1" style="top:40px;font-size:64px">Un devis en <em>2 minutes</em></div>
+  <div class="head disp" id="hD2" style="top:40px;font-size:64px">Signé <em>du bout du doigt</em></div>
+  <div class="head disp" id="hE">Une facture <em>conforme</em>,<br>en un geste</div>
+  <div class="head disp" id="hF1">Le client <em>scanne</em>…</div>
+  <div class="head disp" id="hF2">… et c'est <em>payé</em></div>
+  <div class="head disp dark" id="hG1">L'URSSAF <em>calculée</em>,<br>les dates rappelées</div>
+  <div class="head disp dark" id="hG2" style="top:110px;font-size:58px">Votre vrai <em>net en poche</em></div>
+  <div id="bigNum" class="disp">0 €</div>
+  <div id="mentions"><div class="mt">Mentions obligatoires</div><div class="mg"><div class="mi" id="m1"><span class="ck"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Numéro unique</div><div class="mi" id="m2"><span class="ck"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>SIRET</div><div class="mi" id="m3"><span class="ck"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>TVA art. 293 B</div><div class="mi" id="m4"><span class="ck"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Pénalités de retard</div></div></div>
+  <div class="chip" id="cU"><span class="ck" style="background:#E8A84E"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4zM10 21h4"/></svg></span>À déclarer avant le 31 octobre</div>
+  <div id="coins"></div>
+
+  <!-- H : vie privée -->
+  <div class="scene" id="H">
+    <svg id="lock" viewBox="0 0 120 144"><path id="shackle" d="M30 66 V44 a30 30 0 0 1 60 0 V66" fill="none" stroke="#2340D8" stroke-width="13" stroke-linecap="round"/><rect x="12" y="62" width="96" height="76" rx="18" fill="#2340D8"/><circle cx="60" cy="96" r="9" fill="#fff"/><rect x="56" y="98" width="8" height="18" rx="4" fill="#fff"/></svg>
+    <div id="privTitle" class="disp">Vos chiffres restent<br><span style="color:#2340D8">chez vous</span></div>
+    <div class="privLine" id="pl1" style="top:1020px"><span class="ck"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Aucun compte</div>
+    <div class="privLine" id="pl2" style="top:1130px"><span class="ck"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Aucune publicité</div>
+    <div class="privLine" id="pl3" style="top:1240px"><span class="ck"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Tout sur votre téléphone</div>
+  </div>
+
+  <!-- I : appel à l'action -->
+  <div class="scene" id="I">
+    <div id="ctaHead" class="disp">Vous aussi,<br>essayez Picaillon</div>
+    <div id="ctaLogo"></div>
+    <div id="ctaFree">Gratuit</div>
+    <div id="ctaUrl">picaillonv1.netlify.app</div>
+    <div id="ctaArrow">Le lien est juste en dessous<svg width="70" height="70" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg></div>
+  </div>
+
+  <div id="cap"><div id="capBox"></div></div>
+</div>
+<script src="data.js"></script>
+<script src="scene.js"></script>
+</body></html>
