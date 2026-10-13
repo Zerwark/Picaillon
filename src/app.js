@@ -1081,7 +1081,7 @@
       '<div class="rate"><b>' + pct(tx.total) + '</b><span>Total prélevé sur chaque euro encaissé</span></div></div>' +
       '<p class="note" style="margin:12px 0 0">Plafond micro-entreprise ' + y + ' : ' + eur(a.plafond, 0) + ' · franchise de TVA : ' + eur(a.tva, 0) + ' (seuil majoré ' + eur(a.tvaMaj, 0) + ').</p>' +
       (tx.estime ? '<p class="note" style="margin:8px 0 0">Les taux ' + y + ' ne sont pas encore intégrés : les calculs utilisent ceux de ' + tx.annee + '.</p>' : '') +
-      (ac ? '<p class="note" style="margin:12px 0 0">ACRE : taux réduit à ' + Math.round(ac.facteur * 100) + ' % des taux normaux du ' + C.fmtDate(ac.debut) + ' au ' + C.fmtDate(ac.fin) + '.</p>' : '') +
+      (ac ? '<p class="note" style="margin:12px 0 0">ACRE : cotisations sociales réduites à ' + pct(C.tauxAt(s, ac.debut).social) + ' du ' + C.fmtDate(ac.debut) + ' au ' + C.fmtDate(ac.fin) + '.</p>' : '') +
       '<p class="note" style="margin:8px 0 0">Déclaration ' + (s.periodicite === 'mensuelle' ? 'mensuelle' : 'trimestrielle') + '. La taxe pour frais de chambre consulaire, quand elle s\'applique, n\'est pas incluse.</p></section>';
     var statusPill = { declaree: '<span class="pill ok">Déclarée</span>', retard: '<span class="pill bad">En retard</span>', avant: '<span class="pill">Avant Picaillon</span>', zero: '<span class="pill warn">À déclarer à 0 €</span>', a_declarer: '<span class="pill warn">À déclarer</span>', en_cours: '<span class="pill accent">En cours</span>', a_venir: '<span class="pill">À venir</span>' };
     var list = periods.length ? '<div class="periods"><div class="period-head" aria-hidden="true"><span>Période</span><span>CA encaissé</span><span>À payer</span><span></span></div>' + periods.map(function (p) {
