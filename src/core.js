@@ -14,8 +14,10 @@
     service: { label: 'Prestations de services commerciales', court: 'Services · BIC', social: 21.2, cfp: 0.1, vl: 1.7, plafond: 83600, tva: 37500, tvaMaj: 41250 },
     artisan: { label: 'Activité artisanale', court: 'Artisanat · BIC', social: 21.2, cfp: 0.3, vl: 1.7, plafond: 83600, tva: 37500, tvaMaj: 41250 },
     liberal: { label: 'Profession libérale non réglementée', court: 'Libéral · BNC', social: 25.6, cfp: 0.2, vl: 2.2, plafond: 83600, tva: 37500, tvaMaj: 41250 },
-    cipav:   { label: 'Profession libérale réglementée (Cipav)', court: 'Libéral · Cipav', social: 23.2, cfp: 0.2, vl: 2.2, plafond: 83600, tva: 37500, tvaMaj: 41250 }
+    cipav:   { label: 'Profession libérale réglementée (Cipav)', court: 'Libéral · Cipav', social: 23.2, cfp: 0.2, vl: 2.2, plafond: 83600, tva: 37500, tvaMaj: 41250, acreAvant: 13.4 }
   };
+  // acreAvant : taux ACRE officiel quand il n'est pas 50 % du taux normal (début d'activité avant ACRE_BASCULE).
+  // Cipav : 13,4 % (economie.gouv.fr, fiche « charges sociales » du 06/03/2026 ; bpifrance-creation.fr).
   // Règles qui changent d'une année à l'autre (2026 = valeurs ci-dessus)
   var ANNEE_REF = 2026;
   var DIFF = {
@@ -113,7 +115,7 @@
   function tauxAt(s, date) {
     var a = activite(s, +String(date).slice(0, 4)), ac = acreInfo(s);
     var acre = !!(ac && date >= ac.debut && date <= ac.fin);
-    var social = acre ? ceil1(a.social * ac.facteur) : a.social;
+    var social = !acre ? a.social : (ac.facteur === 0.5 && a.acreAvant) ? a.acreAvant : ceil1(a.social * ac.facteur);
     var vl = s && s.vl ? a.vl : 0;
     return { social: social, cfp: a.cfp, vl: vl, total: round2(social + a.cfp + vl), acre: acre, annee: a.annee, estime: a.estime };
   }
