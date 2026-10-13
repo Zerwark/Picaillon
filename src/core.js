@@ -425,7 +425,13 @@
     if (s.tel) l.push(s.tel);
     return l;
   }
-  function natureOperation(s) { return (s && s.activite === 'vente') ? 'livraison de biens' : 'prestation de services'; }
+  // Nature des opérations (mention obligatoire des factures électroniques) : biens, services ou les deux.
+  // s.natureOp : 'biens' | 'services' | 'mixte' ; vide = déduite de l'activité principale.
+  var NATURES = { biens: 'livraison de biens', services: 'prestation de services', mixte: 'livraison de biens et prestation de services' };
+  function natureOperation(s) {
+    if (s && NATURES[s.natureOp]) return NATURES[s.natureOp];
+    return (s && s.activite === 'vente') ? NATURES.biens : NATURES.services;
+  }
   function documentPDF(d, client, s, opts) {
     opts = opts || {};
     var pdf = new Pdf(), L = 18, R = 192, isF = d.type === 'facture', isA = d.type === 'avoir', isFL = isF || isA;
