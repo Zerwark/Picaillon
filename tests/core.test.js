@@ -61,3 +61,12 @@ test('plafonds et franchise de TVA 2026', () => {
   assert.equal(s.plafond, 83600);
   assert.equal(s.tva, 37500);
 });
+
+test('nature des opérations : selon l\'activité par défaut, ou biens, services, les deux', () => {
+  assert.equal(C.natureOperation({ activite: 'vente' }), 'livraison de biens');
+  assert.equal(C.natureOperation({ activite: 'artisan' }), 'prestation de services');
+  assert.equal(C.natureOperation({ activite: 'artisan', natureOp: 'mixte' }), 'livraison de biens et prestation de services');
+  assert.equal(C.natureOperation({ activite: 'service', natureOp: 'biens' }), 'livraison de biens');
+  assert.equal(C.natureOperation({ activite: 'vente', natureOp: 'services' }), 'prestation de services');
+  assert.equal(C.natureOperation({ activite: 'vente', natureOp: 'inconnu' }), 'livraison de biens');
+});

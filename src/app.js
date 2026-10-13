@@ -1168,7 +1168,10 @@
       '<div class="card-h"><span class="note">Réception obligatoire depuis le 1er septembre 2026 · émission et e-reporting au 1er septembre 2027 pour les micro-entreprises.</span><span class="pill ' + (ok === items.length ? 'ok' : 'warn') + '">' + ok + ' sur ' + items.length + '</span></div>' +
       '<div class="checklist">' + items.map(function (x) { return '<div class="ck' + (x[0] ? ' done' : '') + '"><span class="step-n">' + (x[0] ? icon('check', 14) : '!') + '</span><div><b>' + x[1] + '</b><span>' + x[2] + '</span></div></div>'; }).join('') + '</div>' +
       '<div class="form-grid" style="margin-top:14px"><label class="field"><span>Ma plateforme agréée</span><input class="input" id="s-pa" data-f="plateforme" value="' + esc(f.plateforme || '') + '" placeholder="Nom de la plateforme"><small>La liste officielle des plateformes immatriculées est publiée par l\'administration fiscale sur impots.gouv.fr.</small></label>' +
-      '<label class="check"><input type="checkbox" id="s-fx" data-f="facturx"' + (f.facturx !== false ? ' checked' : '') + '><div><b>Joindre le fichier Factur-X</b><span>Nature de l\'opération indiquée automatiquement : ' + C.natureOperation(f) + '.</span></div></label></div>' +
+      '<label class="field"><span>Nature de vos opérations</span><select class="input" id="s-nat" data-f="natureOp">' +
+        [['', 'Selon mon activité (' + C.natureOperation({ activite: f.activite }) + ')'], ['biens', 'Livraison de biens'], ['services', 'Prestation de services'], ['mixte', 'Les deux (biens et services)']].map(function (o) { return '<option value="' + o[0] + '"' + ((f.natureOp || '') === o[0] ? ' selected' : '') + '>' + esc(o[1]) + '</option>'; }).join('') +
+        '</select><small>Mention obligatoire sur vos factures. Écrit sur chaque facture : « Opération : ' + esc(C.natureOperation(f)) + '. »</small></label>' +
+      '<label class="check"><input type="checkbox" id="s-fx" data-f="facturx"' + (f.facturx !== false ? ' checked' : '') + '><div><b>Joindre le fichier Factur-X</b><span>Le fichier structuré que lisent les plateformes agréées, glissé dans chaque PDF.</span></div></label></div>' +
       '</div></div>';
   }
   function connexions() {
@@ -1896,7 +1899,7 @@
     if (el.dataset.f && S.form) {
       S.form[el.dataset.f] = el.type === 'checkbox' ? el.checked : el.value;
       if (S.view === 'settings') autosave();
-      if (['acre', 'dateCreation', 'activite'].indexOf(el.dataset.f) >= 0) render();
+      if (['acre', 'dateCreation', 'activite', 'natureOp'].indexOf(el.dataset.f) >= 0) render();
       return;
     }
     if (el.dataset.m && S.modal && el.tagName === 'SELECT') { S.modal[el.dataset.m] = el.value; return; }
