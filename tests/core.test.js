@@ -31,6 +31,24 @@ test('ACRE : taux social divisé par deux pour une création avant le 1er juille
   assert.equal(t.social, 10.6);
 });
 
+test('ACRE Cipav : taux officiels 13,4 % avant le 1er juillet 2026, 17,4 % ensuite', () => {
+  const avant = C.tauxAt({ activite: 'cipav', acre: true, dateCreation: '2026-03-15' }, '2026-04-01');
+  assert.equal(avant.acre, true);
+  assert.equal(avant.social, 13.4);
+  const apres = C.tauxAt({ activite: 'cipav', acre: true, dateCreation: '2026-07-01' }, '2026-08-01');
+  assert.equal(apres.acre, true);
+  assert.equal(apres.social, 17.4);
+  // Hors période ACRE : taux normal
+  assert.equal(C.tauxAt({ activite: 'cipav', acre: true, dateCreation: '2026-03-15' }, '2027-01-02').social, 23.2);
+});
+
+test('ACRE : 50 % / 75 % selon la date de début d\'activité, jusqu\'à la fin du 3e trimestre civil suivant', () => {
+  const s = { activite: 'artisan', acre: true, dateCreation: '2026-03-15' };
+  assert.equal(C.acreInfo(s).fin, '2026-12-31');
+  assert.equal(C.tauxAt(s, '2026-10-01').social, 10.6);
+  assert.equal(C.tauxAt({ activite: 'artisan', acre: true, dateCreation: '2026-07-01' }, '2026-08-01').social, 15.9);
+});
+
 test('règles 2025 encore appliquées aux encaissements de 2025', () => {
   assert.equal(C.tauxAt({ activite: 'liberal' }, '2025-06-01').social, 24.6);
   assert.equal(C.activite({ activite: 'service' }, 2025).plafond, 77700);
