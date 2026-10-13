@@ -61,3 +61,30 @@ test('plafonds et franchise de TVA 2026', () => {
   assert.equal(s.plafond, 83600);
   assert.equal(s.tva, 37500);
 });
+
+// Texte d'un PDF généré par documentPDF (polices WinAnsi, donc lecture en latin1)
+function textePDF(d, client) {
+  const s = { nom: 'Camille Test', activite: 'service', siret: '12345678900011' };
+  const pdf = Buffer.from(C.documentPDF(d, client, s, {})).toString('latin1');
+  return [...pdf.matchAll(/\((.*?)\) Tj/g)].map((m) => m[1].replace(/\\([()\\])/g, '$1')).join('\n');
+}
+const factureTest = { type: 'facture', numero: 'F-2026-001', date: '2026-10-01', echeance: '2026-10-31', statut: 'envoyee', lignes: [{ designation: 'Pose', qte: 1, pu: 1000 }] };
+
+test('facture à un client pro : échéance, pénalités de retard et indemnité de 40 €', () => {
+  const t = textePDF(factureTest, { nom: 'SARL Exemple', type: 'pro' });
+  assert.match(t, /Conditions de paiement : à régler avant le 31\/10\/2026\./);
+  assert.match(t, /pénalités au taux de trois fois le taux d'intérêt légal/);
+  assert.match(t, /Indemnité forfaitaire pour frais de recouvrement : 40 \x80/);
+});
+
+test('facture à un particulier : pas d\'indemnité forfaitaire de 40 €', () => {
+  const t = textePDF(factureTest, { nom: 'Jean Martin', type: 'particulier' });
+  assert.match(t, /Conditions de paiement : à régler avant le 31\/10\/2026\./);
+  assert.doesNotMatch(t, /Indemnité forfaitaire/);
+  assert.doesNotMatch(t, /40 \x80/);
+});
+
+test('facture sans délai : paiement à réception écrit sur la facture', () => {
+  const t = textePDF({ ...factureTest, echeance: factureTest.date }, { nom: 'SARL Exemple', type: 'pro' });
+  assert.match(t, /Conditions de paiement : à réception de facture\./);
+});
